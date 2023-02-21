@@ -5,4 +5,4 @@
 
 // import './01-algorithm/tow-stacks-one-queue'
 
-import './01-algorithm/reverse-link-list'
+import './01-algorithm/queue-with-list'
