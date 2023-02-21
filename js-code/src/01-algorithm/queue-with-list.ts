@@ -47,6 +47,12 @@ export class MyQueue {
         if (headNode == null) return null
         if (this.len <= 0) return null
 
+        if (this.len === 1) {
+            this.head = null
+            this.tail = null
+            return headNode.value
+        }
+
         // 取值
         const value = headNode.value
 
