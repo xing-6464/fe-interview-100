@@ -73,3 +73,18 @@ export function binarySearch2(
         return midIndex
     }
 }
+
+// 性能测试
+const arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
+const target = 40
+
+console.time('binarySearch1')
+for (let i = 0; i < 100 * 10000; i++) {
+    binarySearch1(arr, target)
+}
+console.timeEnd('binarySearch1') // 9ms
+console.time('binarySearch2')
+for (let i = 0; i < 100 * 10000; i++) {
+    binarySearch2(arr, target)
+}
+console.timeEnd('binarySearch2') // 19ms
