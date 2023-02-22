@@ -69,6 +69,20 @@ export function findTwoNumbers2(arr: number[], n: number): number[] {
     return res
 }
 
-// const arr = [10, 20, 30, 40, 50, 60]
-// const n = 50
-// console.info(findTowNumbers2(arr, n))
+const arr = [
+    10, 20, 30, 10, 20, 30, 10, 20, 30, 10, 20, 30, 10, 20, 30, 10, 20, 30, 10,
+    20, 30, 10, 20, 30, 40, 50, 60,
+]
+const n = 100
+
+// 时间测试
+console.time('findTwoNumbers1')
+for (let i = 0; i < 100 * 10000; i++) {
+    findTwoNumbers1(arr, n)
+}
+console.timeEnd('findTwoNumbers1') // 262
+console.time('findTwoNumbers2')
+for (let i = 0; i < 100 * 10000; i++) {
+    findTwoNumbers2(arr, n)
+}
+console.timeEnd('findTwoNumbers2') // 41
