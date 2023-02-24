@@ -3,7 +3,7 @@
  * @author 星光
  */
 
-interface ITreeNode {
+export interface ITreeNode {
     value: number
     left: ITreeNode | null
     right: ITreeNode | null
@@ -13,67 +13,77 @@ interface ITreeNode {
  * 二叉树前序遍历
  * @param node ITreeNode
  */
-function preOrderTraverse(node: ITreeNode | null) {
+export function preOrderTraverse(node: ITreeNode | null, arr: number[]) {
     if (node == null) return
-    console.info(node.value)
-    preOrderTraverse(node.left)
-    preOrderTraverse(node.right)
+    arr.push(node.value)
+    preOrderTraverse(node.left, arr)
+    preOrderTraverse(node.right, arr)
 }
 
 /**
  * 二叉树中序遍历
  * @param node ITreeNode | null
  */
-function inOrderTraverse(node: ITreeNode | null) {
+export function inOrderTraverse(node: ITreeNode | null, arr: number[]) {
     if (node == null) return
-    inOrderTraverse(node.left)
-    console.info(node.value)
-    inOrderTraverse(node.right)
+    inOrderTraverse(node.left, arr)
+    // console.info(node.value)
+    arr.push(node.value)
+    inOrderTraverse(node.right, arr)
 }
 
 /**
  * 二叉树后序遍历
  * @param node ITreeNode | null
  */
-function nextOrderTraverse(node: ITreeNode | null) {
+export function nextOrderTraverse(node: ITreeNode | null, arr: number[]) {
     if (node == null) return
-    nextOrderTraverse(node.left)
-    nextOrderTraverse(node.right)
-    console.info(node.value)
+    nextOrderTraverse(node.left, arr)
+    nextOrderTraverse(node.right, arr)
+    arr.push(node.value)
 }
 
-const tree: ITreeNode = {
-    value: 5,
-    left: {
-        value: 3,
-        left: {
-            value: 2,
-            left: null,
-            right: null,
-        },
-        right: {
-            value: 4,
-            left: null,
-            right: null,
-        },
-    },
-    right: {
-        value: 7,
-        left: {
-            value: 6,
-            left: null,
-            right: null,
-        },
-        right: {
-            value: 8,
-            left: null,
-            right: null,
-        },
-    },
+/**
+ * 寻找 BST 里的第 k 小值
+ * @param node tree node
+ * @param k 第几个值
+ */
+export function getKthValue(node: ITreeNode, k: number): number | null {
+    const arr: number[] = []
+    inOrderTraverse(node, arr)
+
+    return arr[k - 1] || null
 }
 
-preOrderTraverse(tree)
-console.info('---------------------')
-inOrderTraverse(tree)
-console.info('---------------------')
-nextOrderTraverse(tree)
+// const bst: ITreeNode = {
+//     value: 5,
+//     left: {
+//         value: 3,
+//         left: {
+//             value: 2,
+//             left: null,
+//             right: null,
+//         },
+//         right: {
+//             value: 4,
+//             left: null,
+//             right: null,
+//         },
+//     },
+//     right: {
+//         value: 7,
+//         left: {
+//             value: 6,
+//             left: null,
+//             right: null,
+//         },
+//         right: {
+//             value: 8,
+//             left: null,
+//             right: null,
+//         },
+//     },
+// }
+
+// const res = getKthValue(bst, 3)
+// console.info(res)
